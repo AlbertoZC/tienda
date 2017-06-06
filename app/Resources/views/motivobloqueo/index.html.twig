@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Motivobloqueos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Desc</th>
+                <th>Castigo</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for motivobloqueo in motivobloqueos %}
+            <tr>
+                <td><a href="{{ path('motivobloqueo_show', { 'id': motivobloqueo.id }) }}">{{ motivobloqueo.desc }}</a></td>
+                <td>{{ motivobloqueo.castigo }}</td>
+                <td>{{ motivobloqueo.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('motivobloqueo_show', { 'id': motivobloqueo.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('motivobloqueo_edit', { 'id': motivobloqueo.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('motivobloqueo_new') }}">Create a new motivobloqueo</a>
+        </li>
+    </ul>
+{% endblock %}

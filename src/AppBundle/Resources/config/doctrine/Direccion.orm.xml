@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Direccion" table="direccion">
+    <indexes>
+      <index name="fk_Direccion_Usuario_idx" columns="usuario"/>
+      <index name="fk_Direccion_Pais1_idx" columns="pais_nombre"/>
+    </indexes>
+    <id name="id" type="integer" column="id"/>
+    <id name="usuario" association-key="true"/>
+    <field name="comunidad" type="string" column="comunidad" length="45" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="localidad" type="string" column="localidad" length="45" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="calle" type="string" column="calle" length="45" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="numero" type="string" column="numero" length="45" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="planta" type="string" column="planta" length="45" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <one-to-one field="usuario" target-entity="Usuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="usuario" referenced-column-name="username"/>
+      </join-columns>
+    </one-to-one>
+    <many-to-one field="paisNombre" target-entity="Pais" fetch="LAZY">
+      <join-columns>
+        <join-column name="pais_nombre" referenced-column-name="nombre"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Motivobloqueo</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Desc</th>
+                <td>{{ motivobloqueo.desc }}</td>
+            </tr>
+            <tr>
+                <th>Castigo</th>
+                <td>{{ motivobloqueo.castigo }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ motivobloqueo.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('motivobloqueo_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('motivobloqueo_edit', { 'id': motivobloqueo.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

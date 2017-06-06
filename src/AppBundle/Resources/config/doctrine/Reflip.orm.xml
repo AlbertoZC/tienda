@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Reflip" table="reflip">
+    <indexes>
+      <index name="fk_Usuarios_has_Flips_Flips1_idx" columns="id_reflip"/>
+      <index name="fk_Usuarios_has_Flips_Usuarios1_idx" columns="usuario_compartidor"/>
+    </indexes>
+    <id name="idReflip" association-key="true"/>
+    <id name="usuarioCompartidor" association-key="true"/>
+    <field name="fecha" type="date" column="fecha" nullable="false"/>
+    <one-to-one field="usuarioCompartidor" target-entity="Usuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="usuario_compartidor" referenced-column-name="username"/>
+      </join-columns>
+    </one-to-one>
+    <one-to-one field="idReflip" target-entity="Flip" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_reflip" referenced-column-name="id"/>
+      </join-columns>
+    </one-to-one>
+  </entity>
+</doctrine-mapping>

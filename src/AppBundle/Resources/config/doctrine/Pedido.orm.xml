@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Pedido" table="pedido">
+    <indexes>
+      <index name="fk_Pedido_Direccion1_idx" columns="direccion_id"/>
+      <index name="fk_Pedido_Usuario1_idx" columns="usuario"/>
+      <index name="fk_Pedido_EstadoEnvio1_idx" columns="envio_estado"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="fecha" type="datetime" column="fecha" nullable="false"/>
+    <many-to-one field="usuario" target-entity="Usuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="usuario" referenced-column-name="username"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="envioEstado" target-entity="Estadoenvio" fetch="LAZY">
+      <join-columns>
+        <join-column name="envio_estado" referenced-column-name="estado"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="direccion" target-entity="Direccion" fetch="LAZY">
+      <join-columns>
+        <join-column name="direccion_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

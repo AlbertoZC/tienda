@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Estadoenvios list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Estado</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for estadoenvio in estadoenvios %}
+            <tr>
+                <td><a href="{{ path('estadoenvio_show', { 'estado': estadoenvio.estado }) }}">{{ estadoenvio.estado }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('estadoenvio_show', { 'estado': estadoenvio.estado }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('estadoenvio_edit', { 'estado': estadoenvio.estado }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('estadoenvio_new') }}">Create a new estadoenvio</a>
+        </li>
+    </ul>
+{% endblock %}

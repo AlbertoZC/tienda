@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Seguimiento" table="seguimiento">
+    <indexes>
+      <index name="fk_Usuario_has_Usuario_Usuario4_idx" columns="seguido"/>
+      <index name="fk_Usuario_has_Usuario_Usuario3_idx" columns="seguidor"/>
+    </indexes>
+    <id name="seguidor" association-key="true"/>
+    <id name="seguido" association-key="true"/>
+    <field name="fecha" type="date" column="fecha" nullable="false"/>
+    <one-to-one field="seguido" target-entity="Usuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="seguido" referenced-column-name="username"/>
+      </join-columns>
+    </one-to-one>
+    <one-to-one field="seguidor" target-entity="Usuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="seguidor" referenced-column-name="username"/>
+      </join-columns>
+    </one-to-one>
+  </entity>
+</doctrine-mapping>

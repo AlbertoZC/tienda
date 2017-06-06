@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Bloqueo" table="bloqueo">
+    <indexes>
+      <index name="fk_Usuario_has_Usuario_Usuario2_idx" columns="bloqueado"/>
+      <index name="fk_Bloqueo_MotivoBloqueo1_idx" columns="MotivoBloqueo_id"/>
+      <index name="IDX_A12F2366550C57AE" columns="bloqueador"/>
+    </indexes>
+    <id name="fechaInicio" type="date" column="fecha_inicio"/>
+    <id name="bloqueador" association-key="true"/>
+    <id name="bloqueado" association-key="true"/>
+    <field name="fechaFin" type="date" column="fecha_fin" nullable="false"/>
+    <one-to-one field="bloqueado" target-entity="Usuario" fetch="LAZY">
+      <join-columns>
+        <join-column name="bloqueado" referenced-column-name="username"/>
+      </join-columns>
+    </one-to-one>
+    <one-to-one field="bloqueador" target-entity="Admin" fetch="LAZY">
+      <join-columns>
+        <join-column name="bloqueador" referenced-column-name="username"/>
+      </join-columns>
+    </one-to-one>
+    <many-to-one field="motivobloqueo" target-entity="Motivobloqueo" fetch="LAZY">
+      <join-columns>
+        <join-column name="MotivoBloqueo_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
